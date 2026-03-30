@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap');
+@import "tailwindcss";
+
+/* ── Color Palette ──────────────────────────────────────────────────────────── */
+:root {
+  /* Windows XP colors */
+  --xp-titlebar-start: #0f4fa8;
+  --xp-titlebar-end:   #3a8cf5;
+  --xp-gray:           #d4d0c8;
+  --xp-gray-light:     #ece9d8;
+  --xp-gray-dark:      #808080;
+  --xp-border-light:   #ffffff;
+  --xp-border-dark:    #404040;
+  --xp-blue:           #0054e3;
+  --xp-text:           #000000;
+
+  /* Minecraft colors */
+  --mc-dirt:           #8b6332;
+  --mc-stone:          #828282;
+  --mc-stone-dark:     #5a5a5a;
+  --mc-grass:          #4e7a1a;
+  --mc-creeper:        #55ff55;
+  --mc-diamond:        #55eeff;
+  --mc-gold:           #ffaa00;
+  --mc-emerald:        #00d900;
+  --mc-lava:           #ff4400;
+  --mc-obsidian:       #1a1020;
+  --mc-coal:           #222222;
+
+  /* Theme */
+  --background: #1e1e1e;
+  --foreground: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-retro: 'VT323', monospace;
+}
+
+/* ── Base ───────────────────────────────────────────────────────────────────── */
+body {
+  background-color: #000;
+  background-image: url('/bliss.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: var(--foreground);
+  font-family: 'Press Start 2P', monospace;
+  image-rendering: pixelated;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Windows XP: raised 3-D border ─────────────────────────────────────────── */
+.xp-raised {
+  box-shadow:
+    inset -1px -1px var(--xp-border-dark),
+    inset  1px  1px var(--xp-border-light),
+    inset -2px -2px var(--xp-gray-dark),
+    inset  2px  2px #ffffff;
+}
+
+.xp-sunken {
+  box-shadow:
+    inset  1px  1px var(--xp-border-dark),
+    inset -1px -1px var(--xp-border-light),
+    inset  2px  2px var(--xp-gray-dark),
+    inset -2px -2px #ffffff;
+}
+
+/* ── XP Window ──────────────────────────────────────────────────────────────── */
+.xp-window {
+  background: var(--xp-gray-light);
+  border: 2px solid var(--xp-border-dark);
+  box-shadow:
+    inset -1px -1px var(--xp-gray-dark),
+    inset  1px  1px #ffffff,
+    3px 3px 8px rgba(0,0,0,0.7);
+  color: var(--xp-text);
+}
+
+.xp-titlebar {
+  background: linear-gradient(180deg, var(--xp-titlebar-end) 0%, var(--xp-titlebar-start) 100%);
+  padding: 4px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.xp-titlebar-text {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+  letter-spacing: 0.5px;
+}
+
+.xp-close-btn {
+  width: 18px;
+  height: 14px;
+  background: linear-gradient(180deg, #f5827f 0%, #e01010 100%);
+  border: 1px solid #8b0000;
+  box-shadow: inset -1px -1px #8b0000, inset 1px 1px #ffaaaa;
+  color: white;
+  font-size: 9px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  line-height: 1;
+}
+
+/* ── XP Button ──────────────────────────────────────────────────────────────── */
+.xp-button {
+  background: linear-gradient(180deg, #f0efe8 0%, #d4d0c8 100%);
+  border: 2px solid var(--xp-border-dark);
+  box-shadow:
+    inset -1px -1px var(--xp-gray-dark),
+    inset  1px  1px #ffffff;
+  color: var(--xp-text);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: filter 0.05s;
+  image-rendering: pixelated;
+}
+
+.xp-button:hover {
+  background: linear-gradient(180deg, #d8d4d0 0%, #c0bcb4 100%);
+}
+
+.xp-button:active {
+  box-shadow:
+    inset  1px  1px var(--xp-gray-dark),
+    inset -1px -1px #ffffff;
+  padding: 7px 9px 5px 11px;
+}
+
+.xp-button-primary {
+  background: linear-gradient(180deg, #3a9af5 0%, #0054c8 100%);
+  border: 2px solid #003090;
+  box-shadow:
+    inset -1px -1px #003090,
+    inset  1px  1px #77c4ff;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+}
+
+.xp-button-primary:hover {
+  background: linear-gradient(180deg, #55aaff 0%, #0066dd 100%);
+}
+
+/* ── Minecraft block border ─────────────────────────────────────────────────── */
+.mc-block {
+  border: 3px solid;
+  border-color: #aaaaaa #555555 #555555 #aaaaaa;
+  image-rendering: pixelated;
+}
+
+.mc-block-dark {
+  border: 3px solid;
+  border-color: #555555 #222222 #222222 #555555;
+}
+
+.mc-block-green {
+  border: 3px solid;
+  border-color: #77ff77 #228822 #228822 #77ff77;
+}
+
+.mc-block-diamond {
+  border: 3px solid;
+  border-color: #88ffff #1199aa #1199aa #88ffff;
+}
+
+.mc-block-gold {
+  border: 3px solid;
+  border-color: #ffdd55 #886600 #886600 #ffdd55;
+}
+
+/* ── Minecraft stone panel ──────────────────────────────────────────────────── */
+.mc-panel {
+  background-color: #3f3f3f;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+.mc-panel-dark {
+  background-color: #2a2a2a;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* ── Pixel font utilities ───────────────────────────────────────────────────── */
+.font-pixel  { font-family: 'Press Start 2P', monospace; image-rendering: pixelated; }
+.font-retro  { font-family: 'VT323', monospace; }
+
+/* ── Text shadow (Minecraft style) ─────────────────────────────────────────── */
+.mc-text-green  { color: var(--mc-creeper);  text-shadow: 2px 2px #1a5e1a; }
+.mc-text-gold   { color: var(--mc-gold);     text-shadow: 2px 2px #5e3d00; }
+.mc-text-diamond{ color: var(--mc-diamond);  text-shadow: 2px 2px #004c5e; }
+.mc-text-white  { color: #ffffff;            text-shadow: 2px 2px #3f3f3f; }
+.mc-text-red    { color: #ff5555;            text-shadow: 2px 2px #5e1a1a; }
+
+/* ── Minecraft gradient text (replaces gradient-text) ──────────────────────── */
+.gradient-text {
+  color: var(--mc-gold);
+  text-shadow: 2px 2px #5e3d00, 3px 3px #2a1a00;
+}
+
+/* ── Status badge ───────────────────────────────────────────────────────────── */
+.mc-badge-available {
+  background: #1a3d1a;
+  border: 2px solid;
+  border-color: #55ff55 #1a5e1a #1a5e1a #55ff55;
+  color: #55ff55;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 6px;
+  padding: 2px 5px;
+}
+
+.mc-badge-busy {
+  background: #3d2a00;
+  border: 2px solid;
+  border-color: #ffaa00 #5e3d00 #5e3d00 #ffaa00;
+  color: #ffaa00;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 6px;
+  padding: 2px 5px;
+}
+
+/* ── Tag pill ───────────────────────────────────────────────────────────────── */
+.mc-tag {
+  background: #2a2a4a;
+  border: 2px solid;
+  border-color: #5555ff #111133 #111133 #5555ff;
+  color: #aaaaff;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 6px;
+  padding: 2px 5px;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────────────────── */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #2a2a2a; border-left: 1px solid #555; }
+::-webkit-scrollbar-thumb {
+  background: var(--xp-gray);
+  box-shadow: inset -1px -1px #808080, inset 1px 1px #fff;
+}
+::-webkit-scrollbar-thumb:hover { background: #c0bcb4; }
+
+/* ── Animations ─────────────────────────────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes mc-flicker {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.85; }
+}
+
+@keyframes pixel-glow {
+  0%, 100% { box-shadow: 0 0 6px 2px rgba(85,255,85,0.4); }
+  50%       { box-shadow: 0 0 14px 4px rgba(85,255,85,0.8); }
+}
+
+@keyframes xp-blink {
+  0%, 100% { background: linear-gradient(180deg, #3a9af5 0%, #0054c8 100%); }
+  50%       { background: linear-gradient(180deg, #0054c8 0%, #003090 100%); }
+}
+
+.animate-float       { animation: float 3s ease-in-out infinite; }
+.animate-mc-flicker  { animation: mc-flicker 1.5s ease-in-out infinite; }
+.animate-pixel-glow  { animation: pixel-glow 2s ease-in-out infinite; }
+
+/* ── XP taskbar glow ────────────────────────────────────────────────────────── */
+.xp-taskbar {
+  background: linear-gradient(180deg, #245edb 0%, #1645a5 40%, #1238a0 60%, #1e5ad9 100%);
+  border-top: 1px solid #5a9af5;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.5);
+}
+
+/* ── XP Start button ────────────────────────────────────────────────────────── */
+.xp-start {
+  background: linear-gradient(180deg, #62b558 0%, #3a8a30 100%);
+  border: 2px solid #1a5e10;
+  box-shadow:
+    inset -1px -1px #1a5e10,
+    inset  1px  1px #90e085;
+  border-radius: 0 12px 12px 0;
+  padding: 3px 12px 3px 8px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+  font-style: italic;
+}
+
+/* ── Card hover ─────────────────────────────────────────────────────────────── */
+.card-glow:hover {
+  box-shadow: 0 0 0 2px var(--mc-creeper), 3px 3px 0 rgba(0,0,0,0.6);
+  transition: box-shadow 0.1s;
+}
+
+html { scroll-behavior: smooth; }
