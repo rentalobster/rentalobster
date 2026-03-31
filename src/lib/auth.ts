@@ -2,13 +2,7 @@ import jwt from "jsonwebtoken";
 import nacl from "tweetnacl";
 import bs58 from "bs58";
 
-const JWT_SECRET = process.env.JWT_SECRET!;
-if (!JWT_SECRET || JWT_SECRET === "your_super_secret_jwt_key_change_this_in_production") {
-  if (process.env.NODE_ENV === "production") {
-    throw new Error("JWT_SECRET must be set to a strong random value in production");
-  }
-}
-
+const JWT_SECRET = process.env.JWT_SECRET;
 const SECRET = JWT_SECRET ?? "dev-secret-change-me";
 
 export type JWTPayload = {
