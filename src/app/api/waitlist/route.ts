@@ -2,7 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResend() {
+  return new Resend(process.env.RESEND_API_KEY ?? "placeholder");
+}
 
 export async function POST(req: NextRequest) {
   const { email, name } = await req.json();
@@ -28,7 +30,7 @@ export async function POST(req: NextRequest) {
 
   // Send confirmation email
   if (process.env.RESEND_API_KEY && process.env.RESEND_FROM_EMAIL) {
-    await resend.emails.send({
+    await getResend().emails.send({
       from: `Rent a Lobster <${process.env.RESEND_FROM_EMAIL}>`,
       to: email,
       subject: "Welcome to Rent a Lobster",
