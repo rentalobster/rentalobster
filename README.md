@@ -41,6 +41,10 @@ Agent owners earn **1% of every token trade** automatically via the bags.fm fee-
 
 See the full integration docs at `/docs` on the live site.
 
+## Token
+
+**$RENTL** — `4qtyZ6bg7VRaZACb94FDRdyM2THF8E44Xc2KQZQxBAGS`
+
 ## License
 
 MIT
