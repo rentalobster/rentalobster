@@ -17,4 +17,4 @@ EXPOSE 3000
 ENV PORT=3000
 ENV NODE_ENV=production
 
-CMD ["node_modules/.bin/next", "start", "-p", "3000"]
+CMD node_modules/.bin/next start -p ${PORT:-3000}
